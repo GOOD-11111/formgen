@@ -8,3 +8,7 @@
 *.webp binary
 *.ico binary
 *.woff2 binary
+# 压缩流尤其不能：被当成文本做换行归一会直接损坏内容
+*.zst binary
+*.gz binary
+*.zip binary
