@@ -232,10 +232,12 @@ out.push('');
 
 // --- 写出 ---------------------------------------------------------------
 const note = `> 导出时已对 **${redactionCount}** 处凭据做过脱敏（含一次性使用的 GitHub Token，已吊销）。`;
-const mdText = head.join('\n').replace(
+// 从日志里抽出的文本可能夹带 CRLF。仓库用 .gitattributes 统一为 LF，
+// 不在这里归一的话，工作区与索引的行尾会不一致，git 每次都要警告并重写。
+const mdText = (head.join('\n').replace(
   '> 折叠块内的内容为便于阅读做了截断，原始全文见原始事件文件。',
   `> 折叠块内的内容为便于阅读做了截断，原始全文见原始事件文件。\n${note}`,
-) + '\n' + out.join('\n');
+) + '\n' + out.join('\n')).replace(/\r\n?/g, '\n');
 
 const jsonlText = records.map(r => redact(JSON.stringify(r))).join('\n') + '\n';
 
