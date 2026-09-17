@@ -1,0 +1,16 @@
+# 运行期数据：表单、提交、草稿。属于「用出来的数据」，不进版本库。
+data/
+
+# 测试与临时产物
+.tmp-test/
+.tmp-graph/
+_tmp/
+_probe*.mjs
+_exam.txt
+
+# 通用
+node_modules/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
